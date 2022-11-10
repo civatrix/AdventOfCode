@@ -25,8 +25,8 @@ func run(_ day: Int) {
         return
     }
     
-    let day = dayClass.init()
-    let result = day.run(input: input)
+    print("Running day \(day)")
+    let result = dayClass.init().run(input: input)
     print(result)
     NSPasteboard.general.setString(result, forType: .string)
 }

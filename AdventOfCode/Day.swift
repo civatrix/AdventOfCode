@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Day: AnyObject {
+protocol Day {
     init()
     
     func run(input: String) -> String
