@@ -71,7 +71,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "1"
+            argument = "-d 1"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-y 2020"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-c $(SESSION_COOKIE)"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

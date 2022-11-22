@@ -85,6 +85,7 @@
 		B93AB302291D93170032E7E9 /* Day24.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB28C291D93170032E7E9 /* Day24.swift */; };
 		B93AB303291D93170032E7E9 /* Day24.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB28C291D93170032E7E9 /* Day24.swift */; };
 		B93AB306291D93170032E7E9 /* Day24Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB28E291D93170032E7E9 /* Day24Tests.swift */; };
+		B99440AB292C2AB100F7AA77 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B99440AA292C2AB100F7AA77 /* Algorithms */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -181,6 +182,7 @@
 		B93AB28D291D93170032E7E9 /* input */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input; sourceTree = "<group>"; };
 		B93AB28E291D93170032E7E9 /* Day24Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day24Tests.swift; sourceTree = "<group>"; };
 		B9584841295B716700B2A37C /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		B9584842295B7F6200B2A37C /* Secrets.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.example.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B99440AB292C2AB100F7AA77 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +250,7 @@
 		B93AB210291C2A130032E7E9 /* AdventOfCode */ = {
 			isa = PBXGroup;
 			children = (
+				B9584842295B7F6200B2A37C /* Secrets.example.xcconfig */,
 				B9584841295B716700B2A37C /* Secrets.xcconfig */,
 				B93AB211291C2A130032E7E9 /* main.swift */,
 				B93AB22A291C392B0032E7E9 /* Day.swift */,
@@ -520,6 +524,9 @@
 			dependencies = (
 			);
 			name = AdventOfCode;
+			packageProductDependencies = (
+				B99440AA292C2AB100F7AA77 /* Algorithms */,
+			);
 			productName = AdventOfCode;
 			productReference = B93AB20E291C2A130032E7E9 /* AdventOfCode */;
 			productType = "com.apple.product-type.tool";
@@ -568,6 +575,9 @@
 				Base,
 			);
 			mainGroup = B93AB205291C2A130032E7E9;
+			packageReferences = (
+				B99440A9292C2AB100F7AA77 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = B93AB20F291C2A130032E7E9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -896,6 +906,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B99440A9292C2AB100F7AA77 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B99440AA292C2AB100F7AA77 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B99440A9292C2AB100F7AA77 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B93AB206291C2A130032E7E9 /* Project object */;
 }
