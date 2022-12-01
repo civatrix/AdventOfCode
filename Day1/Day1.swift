@@ -11,19 +11,17 @@ final class Day1: Day {
     func run(input: String) -> String {
         let lines = input.split(separator: "\n", omittingEmptySubsequences: false)
         
-        var current = 0
-        var best = 0
+        var calories = [0]
         
         for line in lines {
             if line.isEmpty {
-                best = max(current, best)
-                current = 0
+                calories.append(0)
                 continue
             }
             
-            current += Int(line)!
+            calories[calories.endIndex - 1] += Int(line)!
         }
         
-        return "\(best)"
+        return "\(calories.sorted().suffix(3).reduce(0, +))"
     }
 }
