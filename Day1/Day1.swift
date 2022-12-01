@@ -9,6 +9,21 @@ import Foundation
 
 final class Day1: Day {
     func run(input: String) -> String {
-        return ""
+        let lines = input.split(separator: "\n", omittingEmptySubsequences: false)
+        
+        var current = 0
+        var best = 0
+        
+        for line in lines {
+            if line.isEmpty {
+                best = max(current, best)
+                current = 0
+                continue
+            }
+            
+            current += Int(line)!
+        }
+        
+        return "\(best)"
     }
 }
