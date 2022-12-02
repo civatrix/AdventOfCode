@@ -9,19 +9,12 @@ import Foundation
 
 final class Day1: Day {
     func run(input: String) -> String {
-        let lines = input.split(separator: "\n", omittingEmptySubsequences: false)
-        
-        var calories = [0]
-        
-        for line in lines {
-            if line.isEmpty {
-                calories.append(0)
-                continue
-            }
-            
-            calories[calories.endIndex - 1] += Int(line)!
-        }
-        
-        return "\(calories.sorted().suffix(3).reduce(0, +))"
+        return input.allLines
+            .split(separator: "")
+            .map { o in o.map { Int($0)! }.sum }
+            .sorted()
+            .suffix(3)
+            .sum
+            .description
     }
 }

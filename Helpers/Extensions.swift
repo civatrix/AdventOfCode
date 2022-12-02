@@ -12,6 +12,10 @@ extension StringProtocol {
         split(separator: "\n").lazy.map { String($0) }
     }
     
+    var allLines: [String] {
+        split(separator: "\n", omittingEmptySubsequences: false).lazy.map { String($0) }
+    }
+    
     var allDigits: [Int] {
         let characterSet = CharacterSet(charactersIn: "-0123456789")
         return components(separatedBy: characterSet.inverted).filter { !$0.isEmpty }.map { Int($0)! }
@@ -26,6 +30,12 @@ extension Array {
     subscript(safe index: Int) -> Element? {
         guard index < endIndex && index >= startIndex else { return nil }
         return self[index]
+    }
+}
+
+extension Collection where Element == Int {
+    var sum: Int {
+        self.reduce(0, +)
     }
 }
 
