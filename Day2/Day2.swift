@@ -8,23 +8,27 @@
 import Foundation
 
 final class Day2: Day {
-    enum Play: Comparable {
-        case rock, paper, scissors
+    enum Play: Character, Comparable {
+        case rock = "A"
+        case paper = "B"
+        case scissors = "C"
         
-        init(_ char: Character) {
-            switch char {
-            case "A", "X": self = .rock
-            case "B", "Y": self = .paper
-            case "C", "Z": self = .scissors
-            default: exit(2)
-            }
-        }
+        static let order: [Play] = [.rock, .paper, .scissors, .rock]
         
         var throwScore: Int {
             switch self {
             case .rock: return 1
             case .paper: return 2
             case .scissors: return 3
+            }
+        }
+        
+        func playToAchieve(result: Character) -> Play {
+            switch result {
+            case "X": return Play.order[Play.order.lastIndex(of: self)! - 1]
+            case "Y": return self
+            case "Z": return Play.order[Play.order.firstIndex(of: self)! + 1]
+            default: exit(2)
             }
         }
         
@@ -40,8 +44,8 @@ final class Day2: Day {
                 
         var score = 0
         for line in lines {
-            let opponent = Play(line.first!)
-            let you = Play(line.last!)
+            let opponent = Play(rawValue: line.first!)!
+            let you = opponent.playToAchieve(result: line.last!)
             
             score += you.throwScore
             

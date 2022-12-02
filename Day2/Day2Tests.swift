@@ -17,6 +17,6 @@ A Y
 B X
 C Z
 """
-        XCTAssertEqual(day.run(input: input), "15")
+        XCTAssertEqual(day.run(input: input), "12")
     }
 }
