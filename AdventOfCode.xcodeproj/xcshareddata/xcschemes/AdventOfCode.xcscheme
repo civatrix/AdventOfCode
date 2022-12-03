@@ -46,6 +46,16 @@
                ReferencedContainer = "container:AdventOfCode.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B93AB21F291C2DBB0032E7E9"
+               BuildableName = "AdventOfCodeTests.xctest"
+               BlueprintName = "AdventOfCodeTests"
+               ReferencedContainer = "container:AdventOfCode.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
