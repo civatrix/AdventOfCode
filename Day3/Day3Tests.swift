@@ -20,6 +20,6 @@ wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw
 """
-        XCTAssertEqual(day.run(input: input), "157")
+        XCTAssertEqual(day.run(input: input), "70")
     }
 }
