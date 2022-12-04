@@ -17,7 +17,7 @@ final class Day4: Day {
                 let low2 = Int(ranges[1].split(separator: "-")[0])!
                 let high2 = Int(ranges[1].split(separator: "-")[1])!
                 
-                return Set(low1...high1).isSubset(of: low2...high2) || Set(low2...high2).isSubset(of: low1...high1)
+                return (low1...high1).overlaps(low2...high2)
             }
             .count
             .description
