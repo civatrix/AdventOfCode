@@ -25,9 +25,8 @@ final class Day5: Day {
             let count = instruction[instruction.startIndex]
             let start = instruction[instruction.startIndex.advanced(by: 1)] - 1
             let end = instruction[instruction.startIndex.advanced(by: 2)] - 1
-            for _ in (0 ..< count) {
-                stacks[end].append(stacks[start].popLast()!)
-            }
+            stacks[end].append(contentsOf: stacks[start].suffix(count))
+            stacks[start] = stacks[start].dropLast(count)
         }
         
         return String(stacks.map { $0.last! })
