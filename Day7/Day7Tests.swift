@@ -37,6 +37,6 @@ $ ls
 5626152 d.ext
 7214296 k
 """
-        XCTAssertEqual(day.run(input: input), "95437")
+        XCTAssertEqual(day.run(input: input), "24933642")
     }
 }

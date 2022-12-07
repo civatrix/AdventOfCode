@@ -17,9 +17,12 @@ class Directory {
         self.parent = parent
     }
     
-    var totalSizes: [Int] {
-        let childSizes = children.values.flatMap { $0.totalSizes }
-        return childSizes + [fileSizes.sum + childSizes.sum]
+    var totalSize: Int {
+        fileSizes.sum + children.values.map { $0.totalSize }.sum
+    }
+    
+    var allSizes: [Int] {
+        [totalSize] + children.values.flatMap { $0.allSizes }
     }
 }
 
@@ -45,6 +48,7 @@ final class Day7: Day {
             }
         }
         
-        return root.totalSizes.filter { $0 <= 100000 }.sum.description
+        let target = 30000000 - (70000000 - root.totalSize)
+        return root.allSizes.filter { $0 > target }.sorted().first!.description
     }
 }
