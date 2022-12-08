@@ -9,60 +9,36 @@ import Foundation
 
 final class Day8: Day {
     func run(input: String) -> String {
-        var visibleTrees = Set<Point>()
-        
-        let lines = input.lines
-        let maxX = lines[0].count - 1
-        let maxY = lines.count - 1
-        
-        for x in 0 ... maxX {
-            visibleTrees.insert(Point(x: x, y: 0))
-            visibleTrees.insert(Point(x: x, y: maxY))
-        }
-        
-        for y in 0 ... maxY {
-            visibleTrees.insert(Point(x: 0, y: y))
-            visibleTrees.insert(Point(x: maxX, y: y))
-        }
-        
-        let grid = lines.map { line in line.map { $0.wholeNumberValue! } }
+        let grid = input.lines.map { line in line.map { $0.wholeNumberValue! } }
+        let transposedGrid = grid[0].indices.map { index in grid.map { $0[index] } }
+
+        var maxScore = 0
         for (y, row) in grid.enumerated() {
             for (x, tree) in row.enumerated() {
-                let point = Point(x: x, y: y)
-                guard !visibleTrees.contains(point) else { continue }
+                guard (x != 0) && (y != 0) else { continue }
                 
                 let left = row.prefix(upTo: x)
-                if left.max() ?? 0 < tree {
-                    visibleTrees.insert(point)
-                    continue
-                }
+                let leftSeen = left.suffix { $0 < tree }
+                
                 let right = row.suffix(from: x + 1)
-                if right.max() ?? 0 < tree {
-                    visibleTrees.insert(point)
-                    continue
-                }
+                let rightSeen = right.prefix { $0 < tree }
+                
+                let top = transposedGrid[x].prefix(upTo: y)
+                let topSeen = top.suffix { $0 < tree }
+                
+                let bottom = transposedGrid[x].suffix(from: y + 1)
+                let bottomSeen = bottom.prefix { $0 < tree }
+                
+                let leftScore = leftSeen.count + (left.count == leftSeen.count ? 0 : 1)
+                let rightScore = rightSeen.count + (right.count == rightSeen.count ? 0 : 1)
+                let topScore = topSeen.count + (top.count == topSeen.count ? 0 : 1)
+                let bottomScore = bottomSeen.count + (bottom.count == bottomSeen.count ? 0 : 1)
+                
+                let score = leftScore * rightScore * topScore * bottomScore
+                maxScore = max(score, maxScore)
             }
         }
         
-        let transposedGrid = grid[0].indices.map { index in grid.map { $0[index] } }
-        for (y, row) in transposedGrid.enumerated() {
-            for (x, tree) in row.enumerated() {
-                let point = Point(x: y, y: x)
-                guard !visibleTrees.contains(point) else { continue }
-                
-                let left = row.prefix(upTo: x)
-                if left.max() ?? 0 < tree {
-                    visibleTrees.insert(point)
-                    continue
-                }
-                let right = row.suffix(from: x + 1)
-                if right.max() ?? 0 < tree {
-                    visibleTrees.insert(point)
-                    continue
-                }
-            }
-        }
-        
-        return visibleTrees.count.description
+        return maxScore.description
     }
 }
