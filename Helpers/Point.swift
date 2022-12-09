@@ -60,6 +60,10 @@ public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable {
         Point.allDirections.map { $0 + self }
     }
     
+    var normalized: Point {
+        Point(x: x.clamped(to: -1 ... 1), y: y.clamped(to: -1 ... 1))
+    }
+    
     func value<T>(in array: [[T]]) -> T? {
         guard y < array.endIndex && y >= array.startIndex else { return nil }
         guard x < array[y].endIndex && x >= array.startIndex else { return nil }

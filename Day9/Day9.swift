@@ -9,8 +9,7 @@ import Foundation
 
 final class Day9: Day {
     func run(input: String) -> String {
-        var head = Point.zero
-        var tail = Point.zero
+        var knots = Array<Point>(repeating: .zero, count: 10)
         var visited = Set<Point>([.zero])
         
         let directions: [Substring: Point] = ["D": .down, "U": .up, "L": .left, "R": .right]
@@ -21,18 +20,20 @@ final class Day9: Day {
             
             let direction = directions[directionString]!
             for _ in 1 ... count {
-                let newHead = head + direction
-                let vector = newHead - tail
-                let distance2 = (vector.x * vector.x) + (vector.y * vector.y)
-                if distance2 >= 4 {
-                    tail = head
-                    visited.insert(tail)
+                knots[0] += direction
+                for index in knots.indices.dropFirst() {
+                    let head = knots[index - 1]
+                    let tail = knots[index]
+                    
+                    let vector = head - tail
+                    let distance2 = (vector.x * vector.x) + (vector.y * vector.y)
+                    if distance2 >= 4 {
+                        knots[index] += vector.normalized
+                    }
                 }
-                head = newHead
+                visited.insert(knots.last!)
             }
         }
-        
-        visited.printPoints()
         
         return visited.count.description
     }
