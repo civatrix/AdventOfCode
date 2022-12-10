@@ -9,20 +9,31 @@ import Foundation
 
 final class Day10: Day {
     func run(input: String) -> String {
-        let targetCycles = Set([20, 60, 100, 140, 180, 220])
-        
         var register = 1
         var cycle = 1
-        var signal = 0
+        var output = ""
         for line in input.lines {
-            if targetCycles.contains(cycle) {
-                signal += cycle * register
+            if (register - 1 ... register + 1).contains((cycle - 1) % 40) {
+                output += "#"
+            } else {
+                output += "."
             }
+            
+            if output.split(separator: "\n").last!.count % 40 == 0 {
+                output += "\n"
+            }
+            
             if line.hasPrefix("noop") {
                 cycle += 1
             } else {
-                if targetCycles.contains(cycle + 1) {
-                    signal += (cycle + 1) * register
+                if (register - 1 ... register + 1).contains(cycle % 40) {
+                    output += "#"
+                } else {
+                    output += "."
+                }
+                
+                if output.split(separator: "\n").last!.count % 40 == 0 {
+                    output += "\n"
                 }
                 let value = Int(line.split(separator: " ")[1])!
                 register += value
@@ -30,6 +41,6 @@ final class Day10: Day {
             }
         }
         
-        return signal.description
+        return output
     }
 }
