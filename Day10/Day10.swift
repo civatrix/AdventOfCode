@@ -9,11 +9,11 @@ import Foundation
 
 final class Day10: Day {
     func run(input: String) -> String {
-        var register = 1
-        var cycle = 1
+        let cpu = ElfCode(input.lines)
+        
         var output = ""
-        for line in input.lines {
-            if (register - 1 ... register + 1).contains((cycle - 1) % 40) {
+        repeat {
+            if (cpu.register - 1 ... cpu.register + 1).contains((cpu.cycle - 1) % 40) {
                 output += "#"
             } else {
                 output += "."
@@ -22,25 +22,8 @@ final class Day10: Day {
             if output.split(separator: "\n").last!.count % 40 == 0 {
                 output += "\n"
             }
-            
-            if line.hasPrefix("noop") {
-                cycle += 1
-            } else {
-                if (register - 1 ... register + 1).contains(cycle % 40) {
-                    output += "#"
-                } else {
-                    output += "."
-                }
+        } while cpu.step()
                 
-                if output.split(separator: "\n").last!.count % 40 == 0 {
-                    output += "\n"
-                }
-                let value = Int(line.split(separator: " ")[1])!
-                register += value
-                cycle += 2
-            }
-        }
-        
         return output
     }
 }

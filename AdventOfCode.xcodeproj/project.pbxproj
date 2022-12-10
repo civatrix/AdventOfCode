@@ -96,6 +96,8 @@
 		B93F1BB5293C12EA008D5BD1 /* Day25.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB244291D93160032E7E9 /* Day25.swift */; };
 		B93F1BB6293C12EA008D5BD1 /* Day25.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB244291D93160032E7E9 /* Day25.swift */; };
 		B93F1BB7293C12ED008D5BD1 /* Day25Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB246291D93160032E7E9 /* Day25Tests.swift */; };
+		B9B3665629454EAE00BE3B91 /* ElfCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B3665529454EAE00BE3B91 /* ElfCode.swift */; };
+		B9B3665729454EAE00BE3B91 /* ElfCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B3665529454EAE00BE3B91 /* ElfCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +228,7 @@
 		B95D8465292D6E2D00751400 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		B95D8468292D6E4700751400 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
 		B95D846A292D6E6200751400 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B9B3665529454EAE00BE3B91 /* ElfCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElfCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,6 +588,7 @@
 				B95D8465292D6E2D00751400 /* Point.swift */,
 				B95D8468292D6E4700751400 /* AStar.swift */,
 				B95D846A292D6E6200751400 /* Extensions.swift */,
+				B9B3665529454EAE00BE3B91 /* ElfCode.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -750,6 +754,7 @@
 				B93F1B82293C1268008D5BD1 /* Day8.swift in Sources */,
 				B93F1B97293C129F008D5BD1 /* Day15.swift in Sources */,
 				B93F1B94293C1292008D5BD1 /* Day14.swift in Sources */,
+				B9B3665629454EAE00BE3B91 /* ElfCode.swift in Sources */,
 				B93F1B4B293C0BCC008D5BD1 /* Day1.swift in Sources */,
 				B93F1B57293C0C42008D5BD1 /* Day.swift in Sources */,
 				B93F1B78293C1248008D5BD1 /* Day5.swift in Sources */,
@@ -804,6 +809,7 @@
 				B93F1B71293C1222008D5BD1 /* Day2Tests.swift in Sources */,
 				B93F1BB7293C12ED008D5BD1 /* Day25Tests.swift in Sources */,
 				B93F1BB3293C12E1008D5BD1 /* Day24.swift in Sources */,
+				B9B3665729454EAE00BE3B91 /* ElfCode.swift in Sources */,
 				B93F1BAA293C12CA008D5BD1 /* Day21.swift in Sources */,
 				B93F1BB4293C12E6008D5BD1 /* Day24Tests.swift in Sources */,
 				B93F1B8A293C1279008D5BD1 /* Day10Tests.swift in Sources */,
