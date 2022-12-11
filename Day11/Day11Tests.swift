@@ -41,6 +41,6 @@ Monkey 3:
     If true: throw to monkey 0
     If false: throw to monkey 1
 """
-        XCTAssertEqual(day.run(input: input), "10605")
+        XCTAssertEqual(day.run(input: input), "2713310158")
     }
 }

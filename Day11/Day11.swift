@@ -30,6 +30,7 @@ final class Day11: Day {
         
         var monkeys = [Monkey]()
         var index = 0
+        var largestNumber = 1
         while index < lines.endIndex {
             let items = lines[index + 1].allDigits
             
@@ -51,14 +52,15 @@ final class Day11: Day {
             
             monkeys.append(.init(items: items, operation: operation, test: { $0 % divisible == 0 }, trueTarget: trueTarget, falseTarget: falseTarget))
             
+            largestNumber *= divisible
             index += 6
         }
         
-        for _ in 1 ... 20 {
+        for _ in 1 ... 10000 {
             for monkey in monkeys {
                 monkey.inspectCount += monkey.items.count
                 for item in monkey.items {
-                    let newItem = monkey.operation(item) / 3
+                    let newItem = monkey.operation(item) % largestNumber
                     if monkey.test(newItem) {
                         monkeys[monkey.trueTarget].items.append(newItem)
                     } else {
