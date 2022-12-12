@@ -19,6 +19,6 @@ accszExk
 acctuvwj
 abdefghi
 """
-        XCTAssertEqual(day.run(input: input), "31")
+        XCTAssertEqual(day.run(input: input), "29")
     }
 }

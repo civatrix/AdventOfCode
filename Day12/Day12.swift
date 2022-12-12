@@ -24,13 +24,13 @@ final class Day12: Day {
     }
     
     func run(input: String) -> String {
-        var start: Point!
+        var starts = [Point]()
         var end: Point!
         
         let map = input.lines.enumerated().map { (y, line) in
             line.enumerated().map { (x, char) in
-                if char == "S" {
-                    start = Point(x: x, y: y)
+                if char == "S" || char == "a" {
+                    starts.append(Point(x: x, y: y))
                     return 0
                 } else if char == "E" {
                     end = Point(x: x, y: y)
@@ -43,8 +43,7 @@ final class Day12: Day {
         
         let graph = TopGraph(grid: map)
         let aStar = AStar(graph: graph, heuristic: Point.distance(between:and:))
-        let path = aStar.path(start: start, target: end)
         
-        return (path.count - 1).description
+        return starts.map { aStar.path(start: $0, target: end).count - 1 }.filter { $0 > 0 }.min()!.description
     }
 }
