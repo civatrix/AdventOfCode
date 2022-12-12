@@ -10,6 +10,10 @@ public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable {
     static let adjacentDirections: [Point] = [.up, .left, .down, .right]
     static let allDirections: [Point] = [.up, .up + .left, .up + .right, .left, .right, .down, .down + .left, .down + .right]
     
+    static func distance(between to: Point, and from: Point) -> Int {
+        abs(to.x - from.x) + abs(to.y + from.y)
+    }
+    
     public static func < (lhs: Point, rhs: Point) -> Bool {
         if lhs.y == rhs.y {
             return lhs.x < rhs.x
