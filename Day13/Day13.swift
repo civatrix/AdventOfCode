@@ -34,6 +34,10 @@ final class Day13: Day {
         case int(Int)
         case list([Packet])
         
+        init(_ string: String) {
+            self = try! JSONDecoder().decode(Packet.self, from: string.data(using: .utf8)!)
+        }
+        
         init(from decoder: Decoder) throws {
             do {
                 let container = try decoder.singleValueContainer()
@@ -45,18 +49,11 @@ final class Day13: Day {
     }
     
     func run(input: String) -> String {
-        return input.lines
-            .map { try! JSONDecoder().decode(Packet.self, from: $0.data(using: .utf8)!) }
-            .chunks(ofCount: 2)
-            .enumerated()
-            .filter { (_, chunk) in
-                let lhs = chunk[chunk.startIndex]
-                let rhs = chunk[chunk.startIndex.advanced(by: 1)]
-                
-                return lhs < rhs
-            }
-            .map { $0.offset + 1 }
-            .sum
-            .description
+        let markers = ["[[2]]", "[[6]]"].map(Packet.init)
+        
+        let packets = (input.lines.map(Packet.init) + markers)
+            .sorted()
+        
+        return markers.map { packets.firstIndex(of: $0)! + 1 }.reduce(1, *).description
     }
 }

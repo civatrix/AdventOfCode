@@ -37,6 +37,6 @@ final class Day13Tests: XCTestCase {
 [1,[2,[3,[4,[5,6,7]]]],8,9]
 [1,[2,[3,[4,[5,6,0]]]],8,9]
 """
-        XCTAssertEqual(day.run(input: input), "13")
+        XCTAssertEqual(day.run(input: input), "140")
     }
 }
