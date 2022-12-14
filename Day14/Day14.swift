@@ -26,7 +26,7 @@ final class Day14: Day {
             }
         }
         let initialCaveCount = cave.count
-        let bottom = cave.map { $0.y }.max()!
+        let bottom = cave.map { $0.y }.max()! + 1
         
         var sand = Point(x: 500, y: 0)
         while true {
@@ -36,15 +36,21 @@ final class Day14: Day {
                 sand += .down + .left
             } else if !cave.contains(sand + .down + .right) {
                 sand += .down + .right
+            } else if sand == Point(x: 500, y: 0) {
+                cave.insert(sand)
+                break
             } else {
                 cave.insert(sand)
                 sand = Point(x: 500, y: 0)
             }
             
-            if sand.y > bottom {
-                break
+            if sand.y == bottom {
+                cave.insert(sand)
+                sand = Point(x: 500, y: 0)
             }
         }
+        
+        cave.printPoints()
         
         return (cave.count - initialCaveCount).description
     }
