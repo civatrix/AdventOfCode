@@ -19,7 +19,7 @@ extension StringProtocol {
     
     var allDigits: [Int] {
         let characterSet = CharacterSet(charactersIn: "-0123456789")
-        return components(separatedBy: characterSet.inverted).filter { !$0.isEmpty }.map { Int($0)! }
+        return components(separatedBy: characterSet.inverted).filter { !$0.isEmpty }.compactMap { Int($0) }
     }
 }
 
