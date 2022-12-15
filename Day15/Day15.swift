@@ -12,28 +12,55 @@ final class Day15: Day {
         let sensor: Point
         let beacon: Point
         
+        let distance: Int
+        let top, bottom, right, left: Point
+        let yRange: ClosedRange<Int>
+        
         init(_ array: [Int]) {
             sensor = Point(x: array[0], y: array[1])
             beacon = Point(x: array[2], y: array[3])
+            
+            distance = sensor.distance(to: beacon)
+            top = sensor - Point(x: 0, y: distance)
+            bottom = sensor + Point(x: 0, y: distance)
+            left = sensor - Point(x: distance, y: 0)
+            right = sensor + Point(x: distance, y: 0)
+            
+            yRange = top.y ... bottom.y
         }
         
-        func coveredArea(row: Int) -> Set<Point> {
-            let distance = sensor.distance(to: beacon)
+        func contenders(maxSize: Int) -> Set<Point> {
+            var set = Set<Point>()
             
-            guard (sensor.y - distance ... sensor.y + distance).contains(row) else { return [] }
+            for (index, row) in (top.y - 1 ... sensor.y).enumerated() where row >= 0 && row <= maxSize {
+                set.insert(Point(x: sensor.x + index, y: row))
+                set.insert(Point(x: sensor.x - index, y: row))
+            }
             
-            let distanceToRow = abs(row - sensor.y)
+            for (index, row) in (sensor.y ... bottom.y + 1).reversed().enumerated() where row >= 0 && row <= maxSize  {
+                set.insert(Point(x: sensor.x + index, y: row))
+                set.insert(Point(x: sensor.x - index, y: row))
+            }
+            
+            return set.filter { $0.x >= 0 && $0.x <= maxSize }
+        }
+        
+        func contains(_ point: Point) -> Bool {
+            guard yRange.contains(point.y) else { return false }
+            
+            let distanceToRow = abs(point.y - sensor.y)
             let rowWidth = distance - distanceToRow
-
-            return Set<Point>((sensor.x - rowWidth ... sensor.x + rowWidth).map { Point(x: $0, y: row) })
+            
+            return (sensor.x - rowWidth ... sensor.x + rowWidth).contains(point.x)
         }
     }
     
     func run(input: String) -> String {
         let pairs = input.lines.map { Pair($0.allDigits) }
-        
-        let targetRow = input.allDigits.max()! > 30 ? 2_000_000 : 10
-        let coverage = pairs.reduce(Set<Point>()) { $0.union($1.coveredArea(row: targetRow)) }
-        return coverage.subtracting(pairs.flatMap { [$0.beacon, $0.sensor] }).count.description
+        let maxSize = input.allDigits.max()! > 30 ? 4_000_000 : 20
+                
+        let contenders = pairs.reduce(Set<Point>()) { $0.union($1.contenders(maxSize: maxSize)) }
+        let signal = contenders.first { point in pairs.allSatisfy { !$0.contains(point) } }!
+        return ((signal.x * 4_000_000) + signal.y).description
     }
 }
