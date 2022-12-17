@@ -46,8 +46,42 @@ final class Day16: Day {
             valveMap.removeValue(forKey: valve.id)
         }
         
-        let answer = recur(argument: .init(current: "AA", open: [], timeLeft: 30))
-        return answer.description
+        process(initial: .init(current: "AA", open: [], timeLeft: 26))
+        
+        var valveIndexes = [String: Int]()
+        for (index, valve) in valveMap.values.enumerated() {
+            valveIndexes[valve.id] = index
+        }
+        
+        var bestPerValveSet = [Int: Int]()
+        best.forEach {
+            let mask = $0.key.open.map { 1 << valveIndexes[$0]! }.sum
+            bestPerValveSet[mask] = max(bestPerValveSet[mask, default: 0], $0.value)
+        }
+        
+        let valveCount = valveMap.count
+        var bestCombination = 0
+        for option in 1 ... 1 << valveCount {
+            let compliment = ((1 << valveCount) - 1) ^ option
+            let complimentResult = bestPerValveSet[compliment, default: 0]
+            var mask = option
+            while mask > 0 {
+                bestCombination = max(bestCombination, complimentResult + bestPerValveSet[mask, default: 0])
+                mask = (mask - 1) & option
+            }
+        }
+        return bestCombination.description
+    }
+    
+    func allPossiblePermutations(_ set: Set<String>) -> Set<Set<String>> {
+        var combinedSet = Set<Set<String>>()
+        
+        for length in (2 ..< set.count) {
+            let new = Set(set.permutations(ofCount: length).map { Set($0) })
+            combinedSet.formUnion(new)
+        }
+        
+        return combinedSet
     }
     
     struct Arguments: Hashable {
@@ -58,36 +92,29 @@ final class Day16: Day {
     
     var best = [Arguments: Int]()
     var rateCache = [Set<String>: Int]()
-    func recur(argument: Arguments) -> Int {
-        if argument.timeLeft <= 0 {
-            best[argument] = 0
-            return 0
-        }
-        if let answer = best[argument] { return answer }
+    func process(initial: Arguments) {
+        var queue = [(initial, 0)]
         
-        let flowRate: Int
-        if let rate = rateCache[argument.open] {
-            flowRate = rate
-        } else {
-            let rate = argument.open.map { valveMap[$0]!.rate }.sum
-            rateCache[argument.open] = rate
-            flowRate = rate
+        func addToQueue(_ arg: Arguments, _ flow: Int) {
+            if arg.timeLeft >= 0 && best[arg, default: -1] < flow {
+                queue.append((arg, flow))
+                best[arg] = flow
+            }
         }
         
-        let current = valveMap[argument.current]!
-        var possibleBest = flowRate * argument.timeLeft
-        if !argument.open.contains(current.id) && current.rate > 0{
-            possibleBest = recur(argument: .init(current: argument.current, open: argument.open.union([argument.current]), timeLeft: argument.timeLeft - 1)) + flowRate
+        while let (next, flow) = queue.popLast() {
+            let current = valveMap[next.current]!
+            if !next.open.contains(current.id) && current.rate > 0 {
+                let newOpen = next.open.union([current.id])
+                addToQueue(Arguments(current: next.current, open: newOpen, timeLeft: next.timeLeft - 1), flow + (current.rate * (next.timeLeft - 1)))
+            }
+            
+            for adjacent in current.accessible {
+                let distance = distances[current.id]![adjacent]!
+                if distance > next.timeLeft { continue }
+
+                addToQueue(Arguments(current: adjacent, open: next.open, timeLeft: next.timeLeft - distance), flow)
+            }
         }
-        
-        for next in current.accessible {
-            let distance = distances[current.id]![next]!
-            if distance > argument.timeLeft { continue }
-            let result = recur(argument: .init(current: next, open: argument.open, timeLeft: argument.timeLeft - distance)) + (distance * flowRate)
-            possibleBest = max(possibleBest, result)
-        }
-        
-        best[argument] = possibleBest
-        return possibleBest
     }
 }
