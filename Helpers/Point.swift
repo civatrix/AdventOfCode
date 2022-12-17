@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable {
+public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable, ExpressibleByArrayLiteral {
     static let zero = Point(x: 0, y: 0)
     static let up = Point(x: 0, y: -1)
     static let down = Point(x: 0, y: 1)
@@ -43,6 +43,10 @@ public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable {
     
     public static func * (left: Point, right: Int) -> Point {
         Point(x: left.x * right, y: left.y * right)
+    }
+    
+    public init(arrayLiteral elements: Int...) {
+        self = Point(x: elements[0], y: elements[1])
     }
     
     public init(x: Int, y: Int) {
