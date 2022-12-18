@@ -8,6 +8,11 @@
 import Foundation
 
 final class Day17: Day {
+    struct CacheKey: Hashable {
+        let rockIndex, windIndex: Int
+        let heights: [Int]
+    }
+    
     func run(input: String) -> String {
         let jets = input.dropLast().map { $0 == "<" ? Point.left : Point.right }
         let shapes: [[Point]] = [
@@ -28,10 +33,13 @@ final class Day17: Day {
         ]
         let boardBoundary = 0 ..< 7
         
+        var cache = [CacheKey: (rock: Int, height: Int)]()
         var board = Set<Point>(boardBoundary.map { [$0, 0] })
         var highestPoint = 0
         var step = 0
-        for rockNumber in 0 ..< 2022 {
+        var rockNumber = 0
+        var repeatHeight = 0
+        while rockNumber < 1000000000000 {
             var rock = shapes[wrapped: rockNumber]
             rock += .right + .right
             rock += .up * (highestPoint + 4 + rock.last!.y)
@@ -51,9 +59,24 @@ final class Day17: Day {
                     break
                 }
             }
+            
+            let heights = boardBoundary.map { x in highestPoint + board.filter { $0.x == x }.map { $0.y }.min()! }
+            let cacheKey = CacheKey(rockIndex: rockNumber % shapes.count, windIndex: step % jets.count, heights: heights)
+            if let (oldIndex, oldHeight) = cache[cacheKey] {
+                let rockDelta = rockNumber - oldIndex
+                let heightDelta = highestPoint - oldHeight
+                let repeats = (1000000000000 - rockNumber) / rockDelta
+                rockNumber += rockDelta * repeats
+                repeatHeight = heightDelta * repeats
+                cache = [:]
+            } else {
+                cache[cacheKey] = (rock: rockNumber, height: highestPoint)
+            }
+            
+            rockNumber += 1
         }
         
-        return highestPoint.description
+        return (highestPoint + repeatHeight).description
     }
 }
 
