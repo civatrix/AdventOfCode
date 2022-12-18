@@ -22,6 +22,10 @@ final class Day18: Day {
             [lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z]
         }
         
+        static func distance(between to: Point3D, and from: Point3D) -> Int {
+            abs(to.x - from.x) + abs(to.y + from.y) + abs(to.z + from.z)
+        }
+        
         init(x: Int, y: Int, z: Int) {
             self.x = x
             self.y = y
@@ -37,11 +41,36 @@ final class Day18: Day {
         }
     }
     
+    struct Grid3DGraph: Graph {
+        struct Edge: WeightedEdge {
+            let cost = 1
+            let target: Point3D
+        }
+        
+        let walls: Set<Point3D>
+        
+        func edgesOutgoing(from vertex: Point3D) -> [Edge] {
+            return vertex.neighbours.filter { !walls.contains($0) }
+                .map { Edge(target: $0) }
+        }
+    }
+    
     func run(input: String) -> String {
-        let allPoints = Set(input.lines
+        var allPoints = Set(input.lines
             .map { $0.allDigits }
             .map { Point3D(x: $0[0], y: $0[1], z: $0[2]) })
         
-        return allPoints.map { point in point.neighbours.filter { !allPoints.contains($0) }.count }.sum.description
+        let end: Point3D = [-1, -1, -1]
+        let aStar = AStar(graph: Grid3DGraph(walls: allPoints), heuristic: Point3D.distance(between:and:))
+        allPoints = allPoints.filter { !aStar.path(start: $0, target: end).isEmpty }
+                
+        return allPoints.map { point in
+            point.neighbours
+                .filter { !allPoints.contains($0) }
+                .filter { !aStar.path(start: $0, target: end).isEmpty }
+                .count
+        }
+        .sum
+        .description
     }
 }
