@@ -20,25 +20,6 @@ public protocol WeightedEdge {
     var target: Vertex { get }
 }
 
-struct GridGraph: Graph {
-    struct Edge: WeightedEdge {
-        let cost = 1
-        let target: Point
-    }
-    
-    let walls: Set<Point>
-    
-    func edgesOutgoing(from vertex: Point) -> [Edge] {
-        return [
-            vertex + .up,
-            vertex + .down,
-            vertex + .left,
-            vertex + .right,
-        ].filter { !walls.contains($0) }
-            .map { Edge(target: $0) }
-    }
-}
-
 struct HexPoint: Hashable {
     static func +(lhs: HexPoint, rhs: HexPoint) -> HexPoint {
         return HexPoint(q: lhs.q + rhs.q, r: lhs.r + rhs.r, s: lhs.s + rhs.s)

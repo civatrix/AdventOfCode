@@ -96,6 +96,8 @@
 		B93F1BB5293C12EA008D5BD1 /* Day25.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB244291D93160032E7E9 /* Day25.swift */; };
 		B93F1BB6293C12EA008D5BD1 /* Day25.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB244291D93160032E7E9 /* Day25.swift */; };
 		B93F1BB7293C12ED008D5BD1 /* Day25Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AB246291D93160032E7E9 /* Day25Tests.swift */; };
+		B9AA4C87294EE03500A23AB7 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA4C86294EE03500A23AB7 /* Point3D.swift */; };
+		B9AA4C88294EE03500A23AB7 /* Point3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA4C86294EE03500A23AB7 /* Point3D.swift */; };
 		B9B3665629454EAE00BE3B91 /* ElfCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B3665529454EAE00BE3B91 /* ElfCode.swift */; };
 		B9B3665729454EAE00BE3B91 /* ElfCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B3665529454EAE00BE3B91 /* ElfCode.swift */; };
 /* End PBXBuildFile section */
@@ -228,6 +230,7 @@
 		B95D8465292D6E2D00751400 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		B95D8468292D6E4700751400 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
 		B95D846A292D6E6200751400 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B9AA4C86294EE03500A23AB7 /* Point3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point3D.swift; sourceTree = "<group>"; };
 		B9B3665529454EAE00BE3B91 /* ElfCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElfCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -589,6 +592,7 @@
 				B95D8468292D6E4700751400 /* AStar.swift */,
 				B95D846A292D6E6200751400 /* Extensions.swift */,
 				B9B3665529454EAE00BE3B91 /* ElfCode.swift */,
+				B9AA4C86294EE03500A23AB7 /* Point3D.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -749,6 +753,7 @@
 				B93F1BAC293C12D0008D5BD1 /* Day22.swift in Sources */,
 				B93F1B6F293C1219008D5BD1 /* Day2.swift in Sources */,
 				B93F1B88293C1276008D5BD1 /* Day10.swift in Sources */,
+				B9AA4C87294EE03500A23AB7 /* Point3D.swift in Sources */,
 				B93F1B8B293C127D008D5BD1 /* Day11.swift in Sources */,
 				B93F1B8E293C1284008D5BD1 /* Day12.swift in Sources */,
 				B93F1B82293C1268008D5BD1 /* Day8.swift in Sources */,
@@ -819,6 +824,7 @@
 				B93F1B98293C129F008D5BD1 /* Day15.swift in Sources */,
 				B93F1BAD293C12D1008D5BD1 /* Day22.swift in Sources */,
 				B93F1B4D293C0BD2008D5BD1 /* Day1Tests.swift in Sources */,
+				B9AA4C88294EE03500A23AB7 /* Point3D.swift in Sources */,
 				B93F1BA1293C12B5008D5BD1 /* Day18.swift in Sources */,
 				B93F1B89293C1277008D5BD1 /* Day10.swift in Sources */,
 				B93F1B92293C128B008D5BD1 /* Day13.swift in Sources */,

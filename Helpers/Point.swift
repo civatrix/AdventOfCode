@@ -11,7 +11,7 @@ public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable, E
     static let allDirections: [Point] = [.up, .up + .left, .up + .right, .left, .right, .down, .down + .left, .down + .right]
     
     static func distance(between to: Point, and from: Point) -> Int {
-        abs(to.x - from.x) + abs(to.y + from.y)
+        from.distance(to: to)
     }
     
     public static func < (lhs: Point, rhs: Point) -> Bool {
@@ -120,5 +120,24 @@ extension Set where Element == Point {
             }
             mutable.formUnion(deadEnds)
         }
+    }
+}
+
+struct GridGraph: Graph {
+    struct Edge: WeightedEdge {
+        let cost = 1
+        let target: Point
+    }
+    
+    let walls: Set<Point>
+    
+    func edgesOutgoing(from vertex: Point) -> [Edge] {
+        return [
+            vertex + .up,
+            vertex + .down,
+            vertex + .left,
+            vertex + .right,
+        ].filter { !walls.contains($0) }
+            .map { Edge(target: $0) }
     }
 }
