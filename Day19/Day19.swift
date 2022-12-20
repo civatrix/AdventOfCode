@@ -21,6 +21,7 @@ final class Day19: Day {
     
     func run(input: String) -> String {
         return input.lines
+            .prefix(3)
             .map {
                 let numbers = $0.allDigits
                 
@@ -32,16 +33,14 @@ final class Day19: Day {
                 ]
             }
             .map(run(blueprint:))
-            .enumerated()
-            .map { ($0.offset + 1) * $0.element }
-            .sum
+            .reduce(1, *)
             .description
     }
     
     func run(blueprint: [[Int]]) -> Int {
         var bestCount = 0
         var queue = [CacheKey]()
-        queue.append(CacheKey(resources: [0,0,0,0], robots: [1,0,0,0], timeLeft: 24))
+        queue.append(CacheKey(resources: [0,0,0,0], robots: [1,0,0,0], timeLeft: 32))
         
         let maxCosts = (ore ... geode).map { key in blueprint.map { $0[key] }.max()! }
         
