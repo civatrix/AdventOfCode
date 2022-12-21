@@ -29,6 +29,6 @@ lgvd: ljgn * ptdq
 drzm: hmdt - zczc
 hmdt: 32
 """
-        XCTAssertEqual(day.run(input: input), "152")
+        XCTAssertEqual(day.run(input: input), "301")
     }
 }
