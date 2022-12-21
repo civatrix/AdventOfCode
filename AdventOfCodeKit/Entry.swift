@@ -28,6 +28,9 @@ func downloadInput(for day: String, year: String, cookie: String) async -> Strin
     guard let response = try? await URLSession.shared.data(for: request) else {
         return nil
     }
+    guard let httpResponse = response.1 as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        return nil
+    }
     let string = String(data: response.0, encoding: .utf8)
     
     try? string?.write(to: inputUrl(for: day), atomically: true, encoding: .utf8)
