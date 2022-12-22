@@ -85,6 +85,21 @@ public struct Point: Hashable, CustomStringConvertible, Comparable, Equatable, E
     func distance(to: Point) -> Int {
         abs(x - to.x) + abs(y - to.y)
     }
+    
+    func rotate(clockwise: Bool) -> Point {
+        if self == .right {
+            return clockwise ? .down : .up
+        } else if self == .left {
+            return clockwise ? .up : .down
+        } else if self == .up {
+            return clockwise ? .right : .left
+        } else if self == .down {
+            return clockwise ? .left : .right
+        } else {
+            print("Unsupported rotation \(self)")
+            exit(1)
+        }
+    }
 }
 
 extension Set where Element == Point {
