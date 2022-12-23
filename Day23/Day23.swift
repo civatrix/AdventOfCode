@@ -22,7 +22,8 @@ final class Day23: Day {
         }
         elfSet = Set(elves)
         
-        for _ in 0 ..< 10 {
+        var round = 1
+        while true {
             for (index, elf) in elves.enumerated() {
                 if elf.neighbours.allSatisfy({ !elfSet.contains($0) }) {
                     nextElves[elf, default: []].append(index)
@@ -37,18 +38,19 @@ final class Day23: Day {
                     }
                 }
             }
-            
+                        
             nextElves.filter { $0.value.count == 1 }
                 .forEach {
                     elves[$0.value[0]] = $0.key
                 }
-            elfSet = Set(elves)
+            let newElfSet = Set(elves)
+            if elfSet == newElfSet {
+                return round.description
+            }
+            elfSet = newElfSet
             nextElves = [:]
             directionToSearch.rotate(toStartAt: 1)
+            round += 1
         }
-        
-        let width = elves.map { $0.x }.max()! - elves.map { $0.x }.min()! + 1
-        let height = elves.map { $0.y }.max()! - elves.map { $0.y }.min()! + 1
-        return ((width * height) - elves.count).description
     }
 }
