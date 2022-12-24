@@ -20,7 +20,7 @@ final class Day24Tests: XCTestCase {
 #<^v^^>#
 ######.#
 """
-        XCTAssertEqual(day.run(input: input), "18")
+        XCTAssertEqual(day.run(input: input), "54")
     }
     
     func testWind() throws {
@@ -47,7 +47,6 @@ final class Day24Tests: XCTestCase {
         ]
         
         let wind1 = day.windPositions(at: 1, starts: windStarts, width: 6, height: 4)
-        wind1.printPoints()
         XCTAssertEqual(wind1, [[2, 1], [3, 1], [5, 1], [1, 2], [5, 2], [4, 2], [1, 3], [2, 3], [4, 3], [5, 3], [1, 4], [2, 4], [5, 4], [6, 4]])
     }
 }

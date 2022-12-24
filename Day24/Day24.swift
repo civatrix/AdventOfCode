@@ -12,8 +12,8 @@ final class Day24: Day {
         let lines = input.lines
         let width = lines[0].count - 2
         let height = lines.count - 2
-        let start = Point(x: lines[0].distance(from: lines[0].startIndex, to: lines[0].firstIndex(of: ".")!), y: 0)
-        let end = Point(x: lines.last!.distance(from: lines.last!.startIndex, to: lines.last!.firstIndex(of: ".")!), y: lines.count - 1)
+        var start = Point(x: lines[0].distance(from: lines[0].startIndex, to: lines[0].firstIndex(of: ".")!), y: 0)
+        var end = Point(x: lines.last!.distance(from: lines.last!.startIndex, to: lines.last!.firstIndex(of: ".")!), y: lines.count - 1)
         
         var windStarts = [Point: Set<Point>]()
         var walls = Set<Point>([start + .up, end + .down])
@@ -33,6 +33,7 @@ final class Day24: Day {
         
         var time = 0
         var positions = Set<Point>([start])
+        var routeNumber = 1
         while true {
             time += 1
             let winds = windPositions(at: time, starts: windStarts, width: width, height: height)
@@ -44,7 +45,13 @@ final class Day24: Day {
             }
             positions = Set(newPositions)
             if positions.contains(end) {
-                return time.description
+                if routeNumber == 3 {
+                    return time.description
+                } else {
+                    routeNumber += 1
+                    (start, end) = (end, start)
+                    positions = [start]
+                }
             }
         }
     }
