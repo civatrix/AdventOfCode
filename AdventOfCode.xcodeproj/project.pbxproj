@@ -180,6 +180,7 @@
 		B93AB28C291D93170032E7E9 /* Day24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day24.swift; sourceTree = "<group>"; };
 		B93AB28D291D93170032E7E9 /* input */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input; sourceTree = "<group>"; };
 		B93AB28E291D93170032E7E9 /* Day24Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day24Tests.swift; sourceTree = "<group>"; };
+		B9584841295B716700B2A37C /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +247,7 @@
 		B93AB210291C2A130032E7E9 /* AdventOfCode */ = {
 			isa = PBXGroup;
 			children = (
+				B9584841295B716700B2A37C /* Secrets.xcconfig */,
 				B93AB211291C2A130032E7E9 /* main.swift */,
 				B93AB22A291C392B0032E7E9 /* Day.swift */,
 			);
@@ -684,6 +686,7 @@
 /* Begin XCBuildConfiguration section */
 		B93AB213291C2A130032E7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9584841295B716700B2A37C /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -744,6 +747,7 @@
 		};
 		B93AB214291C2A130032E7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9584841295B716700B2A37C /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -797,6 +801,7 @@
 		};
 		B93AB216291C2A130032E7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9584841295B716700B2A37C /* Secrets.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4BG5X47H7;
@@ -808,6 +813,7 @@
 		};
 		B93AB217291C2A130032E7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9584841295B716700B2A37C /* Secrets.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G4BG5X47H7;
@@ -819,6 +825,7 @@
 		};
 		B93AB225291C2DBB0032E7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9584841295B716700B2A37C /* Secrets.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -839,6 +846,7 @@
 		};
 		B93AB226291C2DBB0032E7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9584841295B716700B2A37C /* Secrets.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
