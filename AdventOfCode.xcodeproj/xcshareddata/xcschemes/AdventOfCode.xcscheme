@@ -75,7 +75,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-y 2020"
+            argument = "-y 2022"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
